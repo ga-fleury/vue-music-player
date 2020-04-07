@@ -48,24 +48,6 @@ export default {
           duration: "2:23",
           image: "https://i.imgur.com/ZdWfa1C.jpg"
         }
-      ],
-      sound: [
-        new Howl({
-          src: ["songs/song0.mp3"],
-          format: ["mp3"]
-        }),
-        new Howl({
-          src: ["songs/song1.mp3"],
-          format: ["mp3"]
-        }),
-        new Howl({
-          src: ["songs/song2.mp3"],
-          format: ["mp3"]
-        }),
-        new Howl({
-          src: ["songs/song3.mp3"],
-          format: ["mp3"]
-        })
       ]
     };
   },
@@ -82,7 +64,11 @@ export default {
     },
     playHandler() {
       Howler.volume(0.2);
-      this.sound[this.musicIndex].play();
+      (this.sound = new Howl({
+        src: ["songs/song" + this.musicIndex + ".mp3"],
+        format: ["mp3"]
+      })),
+        this.sound.play();
     }
   }
 };
