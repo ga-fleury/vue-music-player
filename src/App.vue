@@ -12,6 +12,7 @@
 
 <script>
 import MusicPlayer from "./components/MusicPlayer.vue";
+import { Howl, Howler } from "howler";
 
 export default {
   name: "App",
@@ -47,6 +48,24 @@ export default {
           duration: "2:23",
           image: "https://i.imgur.com/ZdWfa1C.jpg"
         }
+      ],
+      sound: [
+        new Howl({
+          src: ["songs/song0.mp3"],
+          format: ["mp3"]
+        }),
+        new Howl({
+          src: ["songs/song1.mp3"],
+          format: ["mp3"]
+        }),
+        new Howl({
+          src: ["songs/song2.mp3"],
+          format: ["mp3"]
+        }),
+        new Howl({
+          src: ["songs/song3.mp3"],
+          format: ["mp3"]
+        })
       ]
     };
   },
@@ -60,6 +79,10 @@ export default {
       this.musicIndex === 0
         ? (this.musicIndex = this.songList.length - 1)
         : this.musicIndex--;
+    },
+    playHandler() {
+      Howler.volume(0.2);
+      this.sound[this.musicIndex].play();
     }
   }
 };
